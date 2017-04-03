@@ -3,11 +3,15 @@
     <span class="pull-right">
   <% if current_user && current_user.is_member_of?(@group) %>
     <label class="label label-success"> Already collection </label>
+    <%= link_to("Cancel collection", quit_group_path(@group), method: :post, class: "btn btn-default") %>
   <% else %>
     <label class="label label-warning"> Not yet collected </label>
+    <%= link_to("Go collect", join_group_path(@group), method: :post, class: "btn btn-default") %>
   <% end %>
 </span>
+<% if current_user && current_user.is_member_of?(@group) %>
      <%= link_to("Write a Review", new_group_post_path(@group), class: "btn btn-default pull-right")%>
+     <% end %>
     <% if current_user && current_user == @group.user %>
     <%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right")%>
     <% end %>
